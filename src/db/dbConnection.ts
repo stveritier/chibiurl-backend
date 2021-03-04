@@ -6,11 +6,20 @@ dotenv.config();
 function getConnectionString(): string {
   switch (process.env.NODE_ENV) {
     case 'production':
-      return process.env.MONGO_CONNECTION_STRING_PRODUCTION!;
+      if (!process.env.MONGO_CONNECTION_STRING_PRODUCTION) {
+        throw Error('Mongo Production Connection String not found.');
+      }
+      return process.env.MONGO_CONNECTION_STRING_PRODUCTION;
     case 'testing':
-      return process.env.MONGO_CONNECTION_STRING_TESTING!;
+      if (!process.env.MONGO_CONNECTION_STRING_TESTING) {
+        throw Error('Mongo Testing Connection String not found.');
+      }
+      return process.env.MONGO_CONNECTION_STRING_TESTING;
     default:
-      return process.env.MONGO_CONNECTION_STRING_DEVELOPMENT!;
+      if (!process.env.MONGO_CONNECTION_STRING_DEVELOPMENT) {
+        throw Error('Mongo Development Connection String not found.');
+      }
+      return process.env.MONGO_CONNECTION_STRING_DEVELOPMENT;
   }
 }
 

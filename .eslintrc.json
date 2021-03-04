@@ -10,5 +10,10 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "rules": { "no-console": "off", "import/prefer-default-export": "off" }
+  "rules": {
+    "no-console": "off",
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/unbound-method": ["error", { "ignoreStatic": true }],
+    "@typescript-eslint/no-misused-promises": "off"
+  }
 }
