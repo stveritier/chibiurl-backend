@@ -34,5 +34,7 @@ mongoose
     console.log('There was a problem connecting to the database.');
     if (error instanceof Error) {
       console.log(`Error message: ${error.message}`);
+    } else {
+      console.log('Unknown Error.');
     }
   });

@@ -1,4 +1,13 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
+
+interface IUser extends Document {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  tokens: [{ token: string; expireDate: Date }];
+  userStatus: string;
+}
 
 const userSchema = new Schema({
   firstName: {
@@ -19,11 +28,8 @@ const userSchema = new Schema({
       token: {
         type: String,
       },
-      refreshtoken: {
-        type: String,
-      },
       expireDate: {
-        type: String,
+        type: Date,
       },
     },
   ],
@@ -33,6 +39,6 @@ const userSchema = new Schema({
   },
 });
 
-const User = mongoose.model('user', userSchema, 'users');
+const User = mongoose.model<IUser>('user', userSchema, 'users');
 
-export { User };
+export { User, IUser };
