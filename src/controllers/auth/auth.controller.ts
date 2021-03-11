@@ -28,7 +28,7 @@ export default class AuthController {
   static async Login(
     req: Request<Record<string, unknown>, Record<string, unknown>, LoginBody>,
     res: Response
-  ) {
+  ): Promise<void> {
     if (!req.body.user.password || !req.body.user.email) {
       res.status(400).send();
       return;

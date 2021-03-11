@@ -1,10 +1,12 @@
 import express from 'express';
 import cors from 'cors';
+import logger from 'morgan';
 import './db/dbConnection';
 
 const app = express();
 
 app.use(cors());
+app.use(logger('dev'));
 app.use(express.json());
 
 if (process.env.NODE_ENV === 'production') {

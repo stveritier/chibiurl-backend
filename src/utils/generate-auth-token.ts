@@ -9,8 +9,9 @@ interface User {
 export const generateAuthToken = (
   user: User
 ): { jwt: string; expirationDate: Date } => {
-  const token = jwt.sign(JSON.stringify(user), process.env.JWT_SECRET!, {
+  const token = jwt.sign(user, process.env.JWT_SECRET!, {
     expiresIn: '2d',
+    subject: user.id,
   });
 
   const expirationDate = dateFns.addDays(new Date(), 2);
